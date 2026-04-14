@@ -37,7 +37,10 @@ connectDB().then(() => {
   createAdmin(); // 🔥 create admin on server start
 });
 
-app.use(cors());
+app.use(cors({
+  origin: "https://ui-guard-tracking.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
