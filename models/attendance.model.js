@@ -4,21 +4,23 @@ const attendanceSchema = new mongoose.Schema(
   {
     guardId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+      ref: "User",
     },
     checkInTime: Date,
     checkOutTime: Date,
     checkInLocation: {
       lat: Number,
-      lng: Number
+      lng: Number,
+      address: String,
     },
     checkOutLocation: {
       lat: Number,
-      lng: Number
+      lng: Number,
+      address: String,
     },
-    totalHours: Number
+    totalHours: Number,
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("Attendance", attendanceSchema);

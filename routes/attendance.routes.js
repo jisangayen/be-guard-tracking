@@ -5,7 +5,8 @@ const {
   checkIn,
   checkOut,
   getMyLogs,
-  getAllStatus
+  getAllStatus,
+  getGuardStats
 } = require("../controllers/attendance.controller");
 
 const { protect } = require("../middleware/auth.middleware");
@@ -14,5 +15,6 @@ router.post("/checkin", protect, checkIn);
 router.post("/checkout", protect, checkOut);
 router.get("/my", protect, getMyLogs);
 router.get("/status", protect, getAllStatus);
+router.get("/stats", getGuardStats);
 
 module.exports = router;

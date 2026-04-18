@@ -103,3 +103,26 @@ exports.getAllStatus = async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 };
+
+exports.getGuardStats = async (req, res) => {
+  const logs = await Attendance.find().populate("guardId", "name email");
+
+  const map = {};
+
+  logs.forEach((log) => {
+     if (!log.guardId) return;
+    const id = log.guardId._id;
+
+    if (!map[id]) {
+      map[id] = {
+        name: log.guardId.name,
+        email: log.guardId.email,
+        totalHours: 0,
+      };
+    }
+
+    map[id].totalHours += log.totalHours || 0;
+  });
+
+  res.json(Object.values(map));
+};
